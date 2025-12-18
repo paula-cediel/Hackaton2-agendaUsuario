@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.util.Arrays;
 
 public class AgendaFX extends Application {
 
@@ -191,14 +192,30 @@ public class AgendaFX extends Application {
         return boton;
     }
 
+    // --- ACTUALIZAR LISTA DE CONTACTOS (ORDEN ALFABÉTICO) ---
     private void actualizarLista() {
+
         lista.getItems().clear();
-        for (Contacto c : agenda.getContactos()) {
+
+        // Obtener contactos
+        Contacto[] contactos = agenda.getContactos();
+
+        // ORDENAR ALFABÉTICAMENTE (Nombre + Apellido)
+        Arrays.sort(contactos, (c1, c2) -> {
+            String nombre1 = c1.getNombre() + c1.getApellido();
+            String nombre2 = c2.getNombre() + c2.getApellido();
+            return nombre1.compareToIgnoreCase(nombre2);
+        });
+
+        // Mostrar contactos ya ordenados
+        for (Contacto c : contactos) {
             lista.getItems().add(
-                    c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono()
+                    c.getNombre() + " " + c.getApellido()
+                            + " - " + c.getTelefono()
             );
         }
     }
+
 
     private void limpiarCampos(TextField... campos) {
         for (TextField c : campos) c.clear();
