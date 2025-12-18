@@ -7,16 +7,14 @@ public class AgendaContactos {
     private Contacto[] contactos;
     private int contador;
 
-    // Constructor por defecto (10 contactos)
     public AgendaContactos() {
-        this.contactos = new Contacto[10];
-        this.contador = 0;
+        contactos = new Contacto[10];
+        contador = 0;
     }
 
-    // Constructor con tamaño definido
     public AgendaContactos(int tamanio) {
-        this.contactos = new Contacto[tamanio];
-        this.contador = 0;
+        contactos = new Contacto[tamanio];
+        contador = 0;
     }
 
     public void anadirContacto(Contacto c) {
@@ -27,7 +25,7 @@ public class AgendaContactos {
         }
 
         if (c.getNombre().isEmpty() || c.getApellido().isEmpty()) {
-            System.out.println("El nombre y apellido no pueden estar vacíos.");
+            System.out.println("Nombre y apellido obligatorios.");
             return;
         }
 
@@ -38,7 +36,7 @@ public class AgendaContactos {
 
         contactos[contador] = c;
         contador++;
-        System.out.println("Contacto agregado correctamente.");
+        System.out.println("Contacto agregado.");
     }
 
     public boolean existeContacto(Contacto c) {
@@ -48,48 +46,6 @@ public class AgendaContactos {
             }
         }
         return false;
-    }
-
-    public void listarContactos() {
-
-        if (contador == 0) {
-            System.out.println("📭 La agenda está vacía.");
-            return;
-        }
-
-        // Copia para ordenar
-        Contacto[] copia = Arrays.copyOf(contactos, contador);
-
-        // Ordenar por nombre y apellido (burbuja simple)
-        for (int i = 0; i < copia.length - 1; i++) {
-            for (int j = i + 1; j < copia.length; j++) {
-                String actual = copia[i].getNombre() + copia[i].getApellido();
-                String siguiente = copia[j].getNombre() + copia[j].getApellido();
-
-                if (actual.compareToIgnoreCase(siguiente) > 0) {
-                    Contacto temp = copia[i];
-                    copia[i] = copia[j];
-                    copia[j] = temp;
-                }
-            }
-        }
-
-        for (Contacto c : copia) {
-            System.out.println(c.getNombre() + " " + c.getApellido()
-                    + " - " + c.getTelefono());
-        }
-    }
-
-    public void buscaContacto(String nombre, String apellido) {
-        for (int i = 0; i < contador; i++) {
-            if (contactos[i].getNombre().equalsIgnoreCase(nombre)
-                    && contactos[i].getApellido().equalsIgnoreCase(apellido)) {
-
-                System.out.println("Teléfono: " + contactos[i].getTelefono());
-                return;
-            }
-        }
-        System.out.println("Contacto no encontrado.");
     }
 
     public void eliminarContacto(Contacto c) {
@@ -104,7 +60,7 @@ public class AgendaContactos {
                 contactos[contador - 1] = null;
                 contador--;
 
-                System.out.println("✅ Contacto eliminado.");
+                System.out.println("Contacto eliminado.");
                 return;
             }
         }
@@ -115,8 +71,8 @@ public class AgendaContactos {
     public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
 
         for (int i = 0; i < contador; i++) {
-            if (contactos[i].getNombre().equalsIgnoreCase(nombre)
-                    && contactos[i].getApellido().equalsIgnoreCase(apellido)) {
+            if (contactos[i].getNombre().equalsIgnoreCase(nombre.trim())
+                    && contactos[i].getApellido().equalsIgnoreCase(apellido.trim())) {
 
                 contactos[i].setTelefono(nuevoTelefono);
                 System.out.println("Teléfono modificado.");
@@ -132,8 +88,11 @@ public class AgendaContactos {
     }
 
     public void espaciosLibres() {
-        int libres = contactos.length - contador;
-        System.out.println("Espacios libres: " + libres);
+        System.out.println("Espacios libres: " + (contactos.length - contador));
+    }
+
+    // MÉTODO CLAVE PARA JAVAFX
+    public Contacto[] getContactos() {
+        return Arrays.copyOf(contactos, contador);
     }
 }
-
