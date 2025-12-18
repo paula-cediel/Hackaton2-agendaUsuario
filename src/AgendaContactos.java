@@ -4,29 +4,38 @@ import java.util.Comparator;
 
 public class AgendaContactos {
 
-    private ArrayList<Contacto> contacto;
+    private ArrayList<Contacto> contactos;
     private int tamañoMaximo;
+
+
+    public ArrayList<Contacto> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(ArrayList<Contacto> contacto) {
+        this.contactos = contacto;
+    }
 
     public AgendaContactos() {
         this.tamañoMaximo = 10;
-        this.contacto = new ArrayList<>();
+        this.contactos = new ArrayList<>();
     }
 
     public AgendaContactos(int tamañoMaximo) {
         this.tamañoMaximo = tamañoMaximo;
-        this.contacto = new ArrayList<>();
+        this.contactos= new ArrayList<>();
     }
 
     public boolean agendaLlena() {
-        return contacto.size() >= tamañoMaximo;
+        return contactos.size() >= tamañoMaximo;
     }
 
     public int espaciosLibres() {
-        return tamañoMaximo - contacto.size();
+        return tamañoMaximo - contactos.size();
     }
 
     public boolean existeContacto(Contacto c) {
-        return contacto.contains(c);
+        return contactos.contains(c);
     }
 
     public void añadirContacto(Contacto c) {
@@ -38,53 +47,64 @@ public class AgendaContactos {
             System.out.println("El contacto ya existe.");
             return;
         }
-        contacto.add(c);
+        contactos.add(c);
         System.out.println("Contacto añadido correctamente.");
     }
 
-    public void listarContactos() {
-        if (contacto.isEmpty()) {
-            System.out.println("La agenda está vacía.");
-            return;
+    public String listarContactos() {
+
+        if (contactos.isEmpty()) {
+            return "La agenda está vacía.";
         }
 
-        Collections.sort(contacto, Comparator
+        Collections.sort(contactos, Comparator
                 .comparing(Contacto::getNombre, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Contacto::getApellido, String.CASE_INSENSITIVE_ORDER));
 
-        for (Contacto c : contacto) {
-            System.out.println(c);
+        StringBuilder sb = new StringBuilder();
+
+        for (Contacto c : contactos) {
+            sb.append(c).append("\n");
         }
+
+        return sb.toString();
     }
 
-    public void buscarContacto(String nombre, String apellido) {
-        for (Contacto c : contacto) {
+    public String buscarContacto(String nombre, String apellido) {
+
+        for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
-                System.out.println("Teléfono: " + c.getTelefono());
-                return;
+
+                return "Teléfono: " + c.getTelefono();
             }
         }
-        System.out.println("Contacto no encontrado.");
+
+        return "Contacto no encontrado.";
     }
 
-    public void eliminarContacto(Contacto c) {
-        if (contacto.remove(c)) {
-            System.out.println("Contacto eliminado correctamente.");
+    public String eliminarContacto(Contacto c) {
+
+        if (contactos.remove(c)) {
+            return "Contacto eliminado correctamente.";
         } else {
-            System.out.println("El contacto no existe.");
+            return "El contacto no existe.";
         }
     }
 
-    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
-        for (Contacto c : contacto) {
+    public String modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
+
+        for (Contacto c : contactos) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
+
                 c.setTelefono(nuevoTelefono);
-                System.out.println("Teléfono modificado correctamente.");
-                return;
+                return "Teléfono modificado correctamente.";
             }
         }
-        System.out.println("Contacto no encontrado.");
+
+        return "Contacto no encontrado.";
     }
+
+
 }

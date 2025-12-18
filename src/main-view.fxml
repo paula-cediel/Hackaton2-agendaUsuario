@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="MainController">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Agenda de Contactos"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label text="Capacidad de la agenda:" />
+
+    <TextField fx:id="txtCapacidad"
+               promptText="10"
+               prefWidth="80"/>
+
+    <Button text="Iniciar agenda"
+            onAction="#iniciarAgenda"
+            style="
+            -fx-background-color: #2196F3;
+            -fx-text-fill: white;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+    <TextField fx:id="txtNombre" promptText="Nombre"/>
+    <TextField fx:id="txtApellido" promptText="Apellido"/>
+    <TextField fx:id="txtTelefono" promptText="Teléfono"/>
+    <Label text="Espacios libres:" />
+
+    <TextField fx:id="txtEspaciosLibres"
+               editable="false"
+               prefWidth="80"/>
+    <Button text="Agregar contacto"
+            fx:id="btnAgregar"
+            onAction="#agregarContacto"
+            style="
+            -fx-background-color: #4CAF50;
+            -fx-text-fill: white;
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+
+    <Button text="Listar contactos"
+            onAction="#listarContactos"
+            style="
+            -fx-background-color: #2196F3;
+            -fx-text-fill: white;
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+
+    <Button text="Buscar contacto"
+            onAction="#buscarContacto"
+            style="
+            -fx-background-color: #FF9800;
+            -fx-text-fill: white;
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+
+
+    <Button text="Eliminar contacto"
+            onAction="#eliminarContacto"
+            style="
+            -fx-background-color:#e74c3c;
+            -fx-text-fill: white;
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+
+    <Button text="Modificar teléfono"
+            onAction="#modificarTelefono"
+            style="
+            -fx-background-color: #4CAF50;
+            -fx-text-fill: white;
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+            -fx-background-radius: 8;
+        "/>
+
+
+
+
+
+</VBox>
