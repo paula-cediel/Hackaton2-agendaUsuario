@@ -4,29 +4,29 @@ import java.util.Comparator;
 
 public class AgendaContactos {
 
-    private ArrayList<Contacto> contactos;
+    private ArrayList<Contacto> contacto;
     private int tamañoMaximo;
 
     public AgendaContactos() {
         this.tamañoMaximo = 10;
-        this.contactos = new ArrayList<>();
+        this.contacto = new ArrayList<>();
     }
 
     public AgendaContactos(int tamañoMaximo) {
         this.tamañoMaximo = tamañoMaximo;
-        this.contactos = new ArrayList<>();
+        this.contacto = new ArrayList<>();
     }
 
     public boolean agendaLlena() {
-        return contactos.size() >= tamañoMaximo;
+        return contacto.size() >= tamañoMaximo;
     }
 
     public int espaciosLibres() {
-        return tamañoMaximo - contactos.size();
+        return tamañoMaximo - contacto.size();
     }
 
     public boolean existeContacto(Contacto c) {
-        return contactos.contains(c);
+        return contacto.contains(c);
     }
 
     public void añadirContacto(Contacto c) {
@@ -38,27 +38,27 @@ public class AgendaContactos {
             System.out.println("El contacto ya existe.");
             return;
         }
-        contactos.add(c);
+        contacto.add(c);
         System.out.println("Contacto añadido correctamente.");
     }
 
     public void listarContactos() {
-        if (contactos.isEmpty()) {
+        if (contacto.isEmpty()) {
             System.out.println("La agenda está vacía.");
             return;
         }
 
-        Collections.sort(contactos, Comparator
+        Collections.sort(contacto, Comparator
                 .comparing(Contacto::getNombre, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Contacto::getApellido, String.CASE_INSENSITIVE_ORDER));
 
-        for (Contacto c : contactos) {
+        for (Contacto c : contacto) {
             System.out.println(c);
         }
     }
 
     public void buscarContacto(String nombre, String apellido) {
-        for (Contacto c : contactos) {
+        for (Contacto c : contacto) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
                 System.out.println("Teléfono: " + c.getTelefono());
@@ -69,7 +69,7 @@ public class AgendaContactos {
     }
 
     public void eliminarContacto(Contacto c) {
-        if (contactos.remove(c)) {
+        if (contacto.remove(c)) {
             System.out.println("Contacto eliminado correctamente.");
         } else {
             System.out.println("El contacto no existe.");
@@ -77,7 +77,7 @@ public class AgendaContactos {
     }
 
     public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
-        for (Contacto c : contactos) {
+        for (Contacto c : contacto) {
             if (c.getNombre().equalsIgnoreCase(nombre) &&
                     c.getApellido().equalsIgnoreCase(apellido)) {
                 c.setTelefono(nuevoTelefono);
