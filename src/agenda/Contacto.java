@@ -1,4 +1,7 @@
+package agenda;
+
 public class Contacto {
+
     private String nombre;
     private String apellido;
     private String telefono;
@@ -23,5 +26,10 @@ public class Contacto {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public boolean esIgual(Contacto c) {
+        return nombre.equalsIgnoreCase(c.nombre)
+                && apellido.equalsIgnoreCase(c.apellido);
     }
 }
