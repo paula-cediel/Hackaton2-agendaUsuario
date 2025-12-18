@@ -25,9 +25,8 @@ public class AgendaFX extends Application {
         titulo.setFont(Font.font(20));
         titulo.setStyle("-fx-text-fill: #e0e0e0;");
 
-        // =====================================================
         // -------- SECCIÓN: CREAR AGENDA ----------------------
-        // =====================================================
+
 
         Label lblCantidad = new Label("Número de contactos (máx. 10):");
         lblCantidad.setStyle("-fx-text-fill: #e0e0e0;");
@@ -109,9 +108,7 @@ public class AgendaFX extends Application {
         HBox botones = new HBox(10, btnAgregar, btnEditar, btnEliminar);
         botones.setAlignment(Pos.CENTER);
 
-        // =====================================================
-        // -------- SECCIÓN: LISTA -----------------------------
-        // =====================================================
+        // -------- SECCIÓN: LISTA -----------------------------}
 
         lista.setStyle("""
             -fx-control-inner-background: #2a2a3c;
@@ -226,9 +223,9 @@ public class AgendaFX extends Application {
             actualizarLista();
         });
 
-        // =====================================================
+
         // -------- LAYOUT PRINCIPAL ---------------------------
-        // =====================================================
+
 
         VBox root = new VBox(
                 20,
@@ -248,9 +245,8 @@ public class AgendaFX extends Application {
         stage.show();
     }
 
-    // =====================================================
     // -------- MÉTODOS AUXILIARES -------------------------
-    // =====================================================
+
 
     private TextField crearCampo(String texto) {
         TextField campo = new TextField();
