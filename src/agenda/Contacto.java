@@ -33,9 +33,10 @@ public class Contacto {
     }
 
     // ---------- COMPARAR CONTACTOS ----------
-    // Dos contactos son iguales si tienen el mismo nombre y apellido
+    // Dos contactos son iguales si nombre y apellido coinciden
     public boolean esIgual(Contacto c) {
         return nombre.equalsIgnoreCase(c.nombre)
                 && apellido.equalsIgnoreCase(c.apellido);
     }
 }
+

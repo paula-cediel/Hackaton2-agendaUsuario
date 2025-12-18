@@ -18,12 +18,10 @@ public class AgendaContactos {
     public void anadirContacto(Contacto c) {
 
         if (agendaLlena()) {
-            System.out.println("Agenda llena");
             return;
         }
 
         if (existeContacto(c)) {
-            System.out.println("Contacto ya existe");
             return;
         }
 
@@ -31,7 +29,7 @@ public class AgendaContactos {
         contador++;
     }
 
-    // ---------- VERIFICAR SI EXISTE ----------
+    // ---------- VERIFICAR CONTACTO ----------
     public boolean existeContacto(Contacto c) {
         for (int i = 0; i < contador; i++) {
             if (contactos[i].esIgual(c)) {
@@ -47,7 +45,6 @@ public class AgendaContactos {
         for (int i = 0; i < contador; i++) {
             if (contactos[i].esIgual(c)) {
 
-                // Desplazar contactos
                 for (int j = i; j < contador - 1; j++) {
                     contactos[j] = contactos[j + 1];
                 }
@@ -60,13 +57,12 @@ public class AgendaContactos {
     }
 
     // ---------- EDITAR CONTACTO ----------
-    // Se elimina el contacto viejo y se agrega el nuevo
     public void editarContacto(Contacto viejo, Contacto nuevo) {
         eliminarContacto(viejo);
         anadirContacto(nuevo);
     }
 
-    // ---------- VERIFICAR AGENDA LLENA ----------
+    // ---------- AGENDA LLENA ----------
     public boolean agendaLlena() {
         return contador == contactos.length;
     }
