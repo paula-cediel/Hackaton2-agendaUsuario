@@ -2,16 +2,19 @@ package agenda;
 
 public class Contacto {
 
+    // ---------- ATRIBUTOS ----------
     private String nombre;
     private String apellido;
     private String telefono;
 
+    // ---------- CONSTRUCTOR ----------
     public Contacto(String nombre, String apellido, String telefono) {
-        this.nombre = nombre.trim();
-        this.apellido = apellido.trim();
-        this.telefono = telefono.trim();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.telefono = telefono;
     }
 
+    // ---------- GETTERS ----------
     public String getNombre() {
         return nombre;
     }
@@ -24,16 +27,14 @@ public class Contacto {
         return telefono;
     }
 
+    // ---------- SETTERS ----------
     public void setTelefono(String telefono) {
-        this.telefono = telefono.trim();
+        this.telefono = telefono;
     }
 
-    // Compara dos contactos por nombre y apellido
+    // ---------- COMPARAR CONTACTOS ----------
+    // Dos contactos son iguales si tienen el mismo nombre y apellido
     public boolean esIgual(Contacto c) {
-        if (c == null) {
-            return false;
-        }
-
         return nombre.equalsIgnoreCase(c.nombre)
                 && apellido.equalsIgnoreCase(c.apellido);
     }
